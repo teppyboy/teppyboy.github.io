@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from zypher.wtf/docs/main.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 13:07:30 GMT -->
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Zypher UILib</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading text-light">Zypher UI-Lib</div>
+      <div class="list-group list-group-flush">
+        <a href="uilibdocs.html" class="list-group-item list-group-item-action bg-dark text-light">About Zypher UI-Lib</a>
+        <a href="main.html" class="list-group-item list-group-item-action bg-dark text-light">Main</a>
+        <a href="interactables.html" class="list-group-item list-group-item-action bg-dark text-light">Interactables</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <button class="btn btn-light" onclick="toggleSidebar();" id="menu-toggle">&lt;</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h3 class="mt-4 text-light">How to get Started</h3>
+        <p class="text-light">first you want to add the UI library to your script</p>
+        <pre class="code-example" style="width:640px;"><code>local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/teppyboy/RbxScripts/master/Misc/UI_Libraries/Zypher/Library.lua"))()</code></pre>
+        <br>
+        <p class="text-light">After adding the UI library to your script you want to add the main. From here you will add categories.</p>
+        <pre class="code-example" style="width:450px;"><code>local main = library:CreateMain({
+    projName = "UILib",
+    Resizable = true,
+    MinSize = UDim2.new(0,400,0,400),
+    MaxSize = UDim2.new(0,750,0,500),
+})</code></pre>
+        <br>
+        <p class="text-light">Now you can add your first category. Categories are used to sort your sections and make it easier for the player to use.</p>
+        <pre class="code-example" style="width:600px;"><code>local category = main:CreateCategory(&lt;string, categoryName&gt;</strong>)</code></pre>
+        <br>
+        <p class="text-light">Inside the category you can now create a section. Here you can put all your buttons, sliders, etc.</p>
+        <pre class="code-example" style="width:500px;"><code>local section = category:CreateSection(&lt;string, sectionName&gt;)</code></pre>
+        <br>
+        <h4 class="text-light">Example</h4>
+        <p class="text-light">You now have fully setup your environment to start working on the interactables. Your code should look something like this</p>
+        <pre class="code-example" style="width:640px;"><code>local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/teppyboy/RbxScripts/master/Misc/UI_Libraries/Zypher/Library.lua"))()
+
+local main = library:CreateMain({
+	projName = "UILib",
+	Resizable = true,
+	MinSize = UDim2.new(0,400,0,400),
+	MaxSize = UDim2.new(0,750,0,500),
+})
+ 
+local category = main:CreateCategory("Category")
+ 
+local section = category:CreateSection("Section")</code></pre>
+      </div>
+    </div> 
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/sidebarHandler.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+
+<!-- Mirrored from zypher.wtf/docs/main.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 13:07:30 GMT -->
+</html>

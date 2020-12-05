@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from zypher.wtf/docs/interactables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 13:07:30 GMT -->
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Zypher UILib</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading text-light">Zypher UI-Lib</div>
+      <div class="list-group list-group-flush">
+        <a href="uilibdocs.html" class="list-group-item list-group-item-action bg-dark text-light">About Zypher UI-Lib</a>
+        <a href="main.html" class="list-group-item list-group-item-action bg-dark text-light">Main</a>
+        <a href="interactables.html" class="list-group-item list-group-item-action bg-dark text-light">Interactables</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <button class="btn btn-light" onclick="toggleSidebar();" id="menu-toggle">&lt;</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h3 class="mt-4 text-light">Interactables</h3>
+        <p class="text-light">Here is a list of interactables you can add to your section.</p>
+        <pre class="code-example" style="width:610px;"><code>Button, Toggle, Slider, Textlabels, Textbox, Dropdown, Keybind, Colorpicker</code></pre>
+        <br>
+        <p class="text-light">Adding a interactable will work with the same script, as shown down here</p>
+        <pre class="code-example" style="width:350px;"><code>section:Create(
+    &lt;string, interactableType&gt;,
+    &lt;string, interactableName&gt;,
+    &lt;function&gt;,
+    <strong>&lt;options&gt;</strong>
+)</code></pre>
+        <br>
+        <p class="text-light">First we're going to start by adding a button to our section. We also added the <code>animated</code> option. This is optional!</p>
+        <pre class="code-example" style="width:350px;"><code>section:Create(
+    "Button",
+    "Button",
+    function()
+        print("button pressed")
+    end<strong style="color:gray">,
+    {
+        animated = true,
+    }
+)</strong></code></pre>
+<br>
+        <p class="text-light">Next we're going to add the toggle, this can be used for toggling on and off scripts. Such as autofarms. We also added the <code>default</code> option. Here you can choose the starting state of your toggle. This is optional!</p>
+        <pre class="code-example" style="width:350px;"><code>section:Create(
+    "Toggle",
+    "Toggle",
+    function(state)
+        print("Current state:", state)
+    end,
+    {
+        default = true,
+    }
+)</code></pre>
+        <br>
+        <p class="text-light">Another interactable is the Slider. The slider allows the player to change values. This is mainly used for scripts which needs a variable input.</p>
+        <pre class="code-example" style="width:450px;"><code>section:Create(
+    "Slider",
+    "Slider",
+    function(value)
+        print(value)
+    end,
+    {
+        min = 0,
+        max = 5<strong style="color:gray">,
+        -- Optional
+        default = 2,
+        precise = true, -- ex: 0.1, 0.2, 0.3
+        changablevalue = true</strong>
+    }
+)</code></pre>
+        <br>
+        <p class="text-light">You can also add a TextBox. Players can add a custom input which can be handled by the script.</p>
+        <pre class="code-example" style="width:450px;"><code>section:Create(
+    "TextBox",
+    "TextBox",
+    function(input)
+        print("Input changed to:", input)
+    end,
+    {
+        text = "I am a textbox"
+    }
+)</code></pre>
+        <br>
+        <p class="text-light">A keybind can be used to run functions upon a keypress. The key used can be configured in the options table. A list of keycodes can be found <a style="color: #e83e8c" href="https://developer.roblox.com/en-us/api-reference/enum/KeyCode">here</a></p>
+        <pre class="code-example" style="width:450px;"><code>section:Create(
+    "KeyBind",
+    "KeyBind", 
+    function()
+        print("Key pressed")
+    end<strong style="color:gray">,
+    {
+        default = Enum.KeyCode.K
+    }</strong>
+)</code></pre>
+<br>
+<p class="text-light">Next off we have the dropdown. Dropdowns are very useful when you want to list stuff and don't want tons of buttons for each one.</a></p>
+<pre class="code-example" style="width:450px;"><code>section:Create(
+    "DropDown",
+    "DropDown", 
+    function(current)
+        print("Selected to:", current)
+    end,
+    {
+        options = {
+            "First",
+            "Second",
+            "Third",
+            "4th",
+            "5th",
+            "6th"
+        }<strong style="color:gray">,
+         -- Optional
+        default = "First",
+        search = true</strong>
+    }
+)</code></pre>
+<br>
+<p class="text-light">Last but not least, we have the ColorPicker. Colorpicker allows the player pick a color. Like changing ESP color, crosshairs, etc.</a></p>
+<pre class="code-example" style="width:450px;"><code>Section:Create(
+    "ColorPicker",
+    "ColorPicker",
+    function(color)
+        print("Current color:", color)
+    end<strong style="color:gray">,
+    {
+        default = Color3.fromRGB(255,255,255)
+    }</strong>
+)</code></pre>
+        <h4 class="text-light">Final Example</h4>
+        <p class="text-light">Down here you will have a full example including the ui library. You can use this to get started, but we recommend you to read the documentation.</p>
+        <pre class="code-example" style="width:640px;"><code>local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/teppyboy/RbxScripts/master/Misc/UI_Libraries/Zypher/Library.lua"))()
+
+local main = library:CreateMain({
+    projName = "UILib",
+    Resizable = true,
+    MinSize = UDim2.new(0,400,0,400),
+    MaxSize = UDim2.new(0,750,0,500),
+})
+
+local category = main:CreateCategory("Category")
+
+local section = category:CreateSection("Section")
+
+section:Create(
+    "Button",
+    "Button",
+    function()
+        print("button pressed")
+    end,
+    {
+        animated = true,
+    }
+)
+section:Create(
+    "Toggle",
+    "Toggle",
+    function(state)
+        print("Current state:", state)
+    end,
+    {
+        default = true,
+    }
+)
+section:Create(
+  "Slider",
+  "Slider",
+  function(value)
+      print(value)
+  end,
+  {
+      min = 0,
+      max = 5,
+      -- Optional
+      default = 2,
+      precise = true, -- ex: 0.1, 0.2, 0.3
+      changablevalue = true
+  }
+)
+section:Create(
+    "TextBox",
+    "TextBox",
+    function(input)
+        print("Input changed to:", input)
+    end,
+    {
+        text = "I am a textbox"
+    }
+)
+section:Create(
+    "KeyBind",
+    "KeyBind", 
+    function()
+        print("Key pressed")
+    end,
+    {
+        default = Enum.KeyCode.K
+    }
+)
+section:Create(
+    "DropDown",
+    "DropDown", 
+    function(current)
+        print("Selected to:", current)
+    end,
+    {
+        options = {
+            "First",
+            "Second",
+            "Third",
+            "4th",
+            "5th",
+            "6th"
+        },
+         -- Optional
+        default = "First",
+        search = true
+    }
+)
+section:Create(
+    "ColorPicker",
+    "ColorPicker", 
+    function(Color)
+        print("Current color:", Color)
+    end,
+    {
+        default = Color3.fromRGB(0,255,255)
+    }
+)</code></pre>
+<p class="text-light">Edit: added textlabels.</a></p>
+<pre class="code-example" style="width:300px;"><code>section:Create(
+    "Textlabel",
+    "Hi, text here!"
+)</code></pre>
+      </div>
+    </div> 
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/sidebarHandler.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+
+<!-- Mirrored from zypher.wtf/docs/interactables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Dec 2020 13:07:32 GMT -->
+</html>
